@@ -1,0 +1,18 @@
+<!-- nom_application/templates/nom_application/reservation_confirmation_hebergement.html -->
+{% extends 'nom_application/base.html' %}
+
+{% block content %}
+    <h1>Confirmation de Réservation</h1>
+    
+    <p>Merci d'avoir effectué une réservation. Voici les détails :</p>
+
+    <ul>
+        <li><strong>Utilisateur :</strong> {{ hebergement.user.username }}</li>
+        <li><strong>Nom :</strong>{{ hebergement.nom }}</li>
+        <li><strong>Adresse :</strong> {{ hebergement.adresse }}</li>
+        <li><strong>Prix :</strong> {{ hebergement.prix }}</li>
+
+    </ul>
+
+    <p>Votre réservation a été confirmée. Bon séjour !</p>
+{% endblock %}

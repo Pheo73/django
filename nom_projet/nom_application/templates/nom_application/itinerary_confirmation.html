@@ -1,0 +1,17 @@
+<!-- nom_application/templates/nom_application/itinerary_confirmation.html -->
+{% extends 'nom_application/base.html' %}
+
+{% block content %}
+  <h2>Confirmation de l'itinéraire</h2>
+  <p>Itinéraire créé avec succès :</p>
+  <ul>
+    <li><strong>Lieu de départ:</strong> {{ itinerary.departure_location }}</li>
+    <li><strong>Destination:</strong> {{ itinerary.destination }}</li>
+    <li><strong>Date:</strong> {{ itinerary.date }}</li>
+    <li><strong>Heure de départ:</strong> {{ itinerary.departure_time }}</li>
+    <li><strong>Heure d'arrivée:</strong> {{ itinerary.arrival_time }}</li>
+    <li><strong>Nombre de sièges:</strong> {{ itinerary.number_of_seats }}</li>
+    <li><strong>Prix:</strong> {{ itinerary.price }}</li>
+    <li><strong>Type de transport:</strong> {{ itinerary.get_transport_type_display }}</li>
+  </ul>
+{% endblock %}

@@ -1,0 +1,42 @@
+<!-- liste_hebergement.html -->
+
+{% extends 'nom_application/base.html' %}
+{% block content %}
+  <h2>Liste des hébergement disponibles :</h2>
+  <div>
+    <form method="get" action="{% url 'liste_hebergement' %}" style="display: flex; margin-left: 0; max-width: 500px">
+      <label for="search" style="width: 45%;">Recherche :</label>
+      <input type="text" id="search" name="search" >
+      <button type="submit" style="margin-left: 5rem;">Rechercher</button>
+    </form>
+  </div>
+    <a href="{% url 'liste_hebergement' %}">Tous les hébergements</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Adresse</th>
+        <th>Prix</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for hebergement in hebergements %}
+        <tr>
+          <td>{{ hebergement.nom }}</td>
+          <td>{{ hebergement.adresse }}</td>
+          <td>{{ hebergement.prix }}€</td>
+          <td>
+            <form method="post" action="{% url 'choisir_hebergement' hebergement.id %}">
+                {% csrf_token %}
+                <button type="submit">Réserver</button>
+            </form>
+            {% if user.is_superuser %}
+                | <a href="{% url 'supprimer_hebergement' hebergement.id %}">Supprimer</a>
+            {% endif %}
+        </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

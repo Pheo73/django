@@ -1,0 +1,18 @@
+<!-- create_hebergement.html -->
+{% extends 'nom_application/base.html' %}
+
+{% block content %}
+<h2>Créer un hébergement</h2>
+<form method="post" action="{% url 'create_hebergement' %}">
+    {% csrf_token %}
+    <label for="nom">Nom de l'etablissement :</label>
+    <input type="text" id="nom" name="nom" required><br>
+    <label for="adresse">Adresse : </label>
+    <input type="text" id="adresse" name="adresse" required><br>
+    <label for="prix">Prix:</label>
+    <input type="text" id="prix" name="prix" required><br>
+    <br>
+    <input type="submit" value="Créer l'hébergement">
+   
+  </form>
+{% endblock %}

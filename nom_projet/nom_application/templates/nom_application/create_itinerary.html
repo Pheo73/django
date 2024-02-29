@@ -1,0 +1,31 @@
+<!-- Dans votre template (create_itinerary.html) -->
+{% extends 'nom_application/base.html' %}
+
+{% block content %}
+  <h2>Création d'un nouvel itinéraire</h2>
+  <form method="post" action="{% url 'create_itinerary' %}">
+    {% csrf_token %}
+    <label for="departure_location">Lieu de départ:</label>
+    <input type="text" id="departure_location" name="departure_location" required><br>
+    <label for="destination">Destination:</label>
+    <input type="text" id="destination" name="destination" required><br>
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required><br>
+    <label for="departure_time">Heure de départ:</label>
+    <input type="time" id="departure_time" name="departure_time" required><br>
+    <label for="arrival_time">Heure d'arrivée:</label>
+    <input type="time" id="arrival_time" name="arrival_time" required><br>
+    <label for="number_of_seats">Nombre de sièges:</label>
+    <input type="number" id="number_of_seats" name="number_of_seats" required><br>
+    <label for="price">Prix:</label>
+    <input type="text" id="price" name="price" required><br>
+    <label for="transport_type">Type de transport:</label>
+    <select id="transport_type" name="transport_type" required>
+        {% for choice in form.transport_type.field.choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+        {% endfor %}
+    </select><br>
+    <input type="submit" value="Créer l'itinéraire">
+   
+  </form>
+{% endblock %}

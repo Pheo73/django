@@ -1,0 +1,52 @@
+<!-- liste_itineraires.html -->
+
+{% extends 'nom_application/base.html' %}
+{% block content %}
+  <h2>Liste des Voyages disponibles :</h2>
+ <div>
+  <form method="get" action="{% url 'liste_itineraires' %}" style="display: flex; margin-left: 0; max-width: 500px">
+    <label for="search" style="width: 45%;">Recherche :</label>
+    <input type="text" id="search" name="search" >
+    <button type="submit" style="margin-left: 5rem;">Rechercher</button>
+  </form>
+</div>
+  <a href="{% url 'liste_itineraires' %}">Tous les voyages</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Lieu de départ</th>
+        <th>Destination</th>
+        <th>Date</th>
+        <th>Heure de départ</th>
+        <th>Heure d'arrivée</th>
+        <th>Type de transport</th>
+        <th>Nombre de sièges</th>
+        <th>Prix</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for itinerary in itineraires %}
+        <tr>
+          <td>{{ itinerary.departure_location }}</td>
+          <td>{{ itinerary.destination }}</td>
+          <td>{{ itinerary.date }}</td>
+          <td>{{ itinerary.departure_time }}</td>
+          <td>{{ itinerary.arrival_time }}</td>
+          <td>{{ itinerary.transport_type }}</td>
+          <td>{{ itinerary.number_of_seats }}</td>
+          <td>{{ itinerary.price }}€</td>
+          <td>
+            <form method="post" action="{% url 'choisir_itineraire' itinerary.id %}">
+                {% csrf_token %}
+                <button type="submit">Réserver</button>
+            </form>
+            {% if user.is_superuser %}
+                <a href="{% url 'supprimer_itineraire' itinerary.id %}">Supprimer</a>
+            {% endif %}
+        </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

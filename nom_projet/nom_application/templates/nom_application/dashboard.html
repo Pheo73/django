@@ -1,0 +1,47 @@
+{% load static %}
+
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'nom_application/styles.css' %}">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3125/3125848.png">
+    <title>Tableau de bord</title>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur votre tableau de bord</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'liste_itineraires' %}">Liste des voyages</a></li>
+                <li><a href="{% url 'reserved_itineraries' %}">Voyages Réservés</a></li>
+                <li><a href="{% url 'liste_hebergement' %}">Liste des hébergement</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <div class="user-info">
+            <p>Bienvenue, {{ user.username }}!</p>
+        </div>
+    
+        {%if  user.is_superuser %}
+        <div class="create-itinerary-link">
+            <a href="{% url 'create_itinerary' %}">Créer un nouveau voyage</a>
+        </div>
+        <br>
+        <div class="create-hebergement-link">
+            <a href="{% url 'create_hebergement' %}">Créer un nouvel hébergement</a>
+        </div>
+        {% else %}
+        {% endif %}
+    
+        <p><a href="{% url 'deconnexion' %}">Déconnexion</a></p>
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!-- reserved_itineraries.html -->
+{% extends 'nom_application/base.html' %}
+
+{% block content %}
+    <h2>Voyages Réservés</h2>
+
+    {% if reserved_itineraries %}
+        <ul>
+            {% for itinerary in reserved_itineraries %}
+                <li style="display: flex; margin-bottom: 20px;">
+                    {{ itinerary.departure_location }} to {{ itinerary.destination }} at {{ itinerary.departure_time }}
+                    <form method="post" action="{% url 'delete_reservation' itinerary.id %}" style="margin-left: 20px;">
+                        {% csrf_token %}
+                        <button type="submit" >Supprimer</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun voyages réservé pour le moment.</p>
+    {% endif %}
+{% endblock %}

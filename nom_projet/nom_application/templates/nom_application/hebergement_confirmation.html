@@ -1,0 +1,12 @@
+<!-- nom_application/templates/nom_application/itinerary_confirmation.html -->
+{% extends 'nom_application/base.html' %}
+
+{% block content %}
+  <h2>Confirmation de l'hébergement</h2>
+  <p>Hébergement créé avec succès :</p>
+  <ul>
+    <li><strong>Nom de l'etablissement :</strong> {{ hebergement.nom }}</li>
+    <li><strong>Adresse :</strong> {{ hebergement.adresse }}</li>
+    <li><strong>Prix:</strong> {{ hebergement.prix }}</li>
+  </ul>
+{% endblock %}

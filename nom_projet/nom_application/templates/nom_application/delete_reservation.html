@@ -1,0 +1,11 @@
+{% extends 'nom_application/base.html' %}
+
+{% block content %}
+    <h2>Confirmer la suppresion</h2>
+    <p>Êtes vous sur de vouloir supprimer cette reservation ?</p>
+    <form method="post" action="{% url 'delete_reservation' reservation.id %}">
+        {% csrf_token %}
+        <button type="submit">Supprimer</button>
+    </form>
+{% endblock %}
+

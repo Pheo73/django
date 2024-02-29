@@ -1,0 +1,16 @@
+<!-- nom_application/templates/nom_application/reservation_confirmation.html -->
+{% extends 'nom_application/base.html' %}
+
+{% block content %}
+    <h1>Confirmation de Réservation</h1>
+    
+    <p>Merci d'avoir effectué une réservation. Voici les détails :</p>
+
+    <ul>
+        <li><strong>Utilisateur :</strong> {{ itinerary.user.username }}</li>
+        <li><strong>Itinéraire :</strong> de {{ itinerary.departure_location }} à {{ itinerary.destination }}</li>
+        <li><strong>Date :</strong> {{ itinerary.date }}</li>
+    </ul>
+
+    <p>Votre réservation a été confirmée. Bon voyage !</p>
+{% endblock %}

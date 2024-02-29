@@ -1,0 +1,48 @@
+<!-- base.html -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'nom_application/styles.css' %}">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3125/3125848.png">
+    <title>{% block title %}Accueil{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur le site de gestion des voyages</h1>
+        {% if user.is_authenticated %}
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Accueil</a></li>
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'liste_itineraires' %}">Liste des itinéraires</a></li>
+
+            </ul>
+        </nav>
+        {% else %}
+        {% endif %}
+        
+    </header>
+
+    <main>{% if user.is_authenticated %}
+        
+            
+        Bienvenue, {{ user.username }}! (<a href="{% url 'deconnexion' %}">Déconnexion</a>)
+          
+{% else %}
+    <a href="{% url 'connexion' %}">Connexion  </a>  | <a href="{% url 'inscription' %}">Créer un compte</a>
+
+{% endif %}
+ 
+
+
+</main>
+    <footer>
+        <!-- Footer content here -->
+    </footer>
+</body>
+</html>
